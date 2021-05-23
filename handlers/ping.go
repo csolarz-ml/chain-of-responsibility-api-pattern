@@ -1,9 +1,11 @@
 package handlers
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
 
 func Ping(c *gin.Context) {
-	c.AbortWithStatusJSON(200, gin.H{
-		"message": "pong",
-	})
+	c.String(http.StatusOK, "pong")
 }
