@@ -1,5 +1,5 @@
 package model
 
-type LoanRequest struct {
+type LoanForm struct {
 	Amount int `json:"amount"`
 }

@@ -1,19 +1,22 @@
 package handlers
 
 import (
+	"net/http"
+
 	"github.com/csolarz-ml/chain-of-responsibility-api-pattern/model"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 )
 
 func AccountManagerApproval(c *gin.Context) {
-	loan := model.LoanRequest{}
-	c.ShouldBindBodyWith(&loan, binding.JSON)
+	form := model.LoanForm{}
+	c.ShouldBindBodyWith(&form, binding.JSON)
 
-	if loan.Amount < 10000 {
-		c.AbortWithStatusJSON(200, gin.H{
-			"message":   "loan ok!",
-			"signed_by": "Account Manager",
+	if form.Amount < 10000 {
+		c.AbortWithStatusJSON(http.StatusOK, &model.Loan{
+			Form:     form,
+			Message:  "loan ok!",
+			SignedBy: "Account Manager",
 		})
 	}
 

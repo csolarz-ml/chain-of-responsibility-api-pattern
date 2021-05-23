@@ -14,7 +14,7 @@ func Auth(c *gin.Context) {
 	if key != "" {
 		c.Header("Powered-By", "GNB")
 
-		loan := &model.LoanRequest{}
+		loan := &model.LoanForm{}
 		if err := c.ShouldBindBodyWith(&loan, binding.JSON); err != nil {
 			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
 				"message": "invalid loan request!",
